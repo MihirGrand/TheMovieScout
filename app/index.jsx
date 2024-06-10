@@ -1,46 +1,13 @@
-/* import { StatusBar } from "expo-status-bar";
-import { Text, View, TextInput, SafeAreaView, Button } from "react-native";
-import Animated, {
-  Easing,
-  useAnimatedStyle,
-  useSharedValue,
-  withRepeat,
-  withTiming,
-} from "react-native-reanimated";
-import { Link, router } from "expo-router";
-import { useEffect } from "react";
-
-import images from "../constants/images";
-
-const duration = 2000;
-
-export default function App() {
-  const sv = useSharedValue(0);
-
-  useEffect(() => {
-    sv.value = withRepeat(withTiming(1, { duration, }), -1);
-  }, []);
-
-  const animatedStyle = useAnimatedStyle(() => ({
-    transform: [{ rotate: `${sv.value * 360}deg` }],
-  }));
-
-  return (
-    <SafeAreaView className="flex-1 gap-2 bg-bglight h-full pt-10 items-center">
-      <Animated.View style={animatedStyle}>
-        <images.Video_Streaming height={300} className="drop-shadow-lg" />
-      </Animated.View>
-      <Button title="Home" onPress={() => router.push("home")}>
-        Home
-      </Button>
-      <StatusBar style="light" />
-    </SafeAreaView>
-  );
-}
- */
-
 import { StatusBar } from "expo-status-bar";
-import { Text, View, TextInput, SafeAreaView, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  SafeAreaView,
+  Button,
+  TouchableHighlight,
+} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Animated, {
   Easing,
@@ -55,7 +22,7 @@ import { useEffect } from "react";
 import images from "../constants/images";
 import { useGlobalContext } from "../context/GlobalProvider";
 
-const duration = 2000;
+const duration = 1500;
 
 export default function App() {
   const sv = useSharedValue(0);
@@ -83,27 +50,40 @@ export default function App() {
   }, []);
 
   const animatedStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: sv.value * 20 - 10 }],
+    transform: [{ translateY: sv.value * 10 - 5 }],
   }));
 
+  const styles = StyleSheet.create({
+    shadow: {
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 3,
+      },
+      shadowOpacity: 0.27,
+      shadowRadius: 4.65,
+
+      elevation: 6,
+    },
+  });
+
   return (
-    <SafeAreaView className="flex-1 gap-2 bg-bglight h-full pt-10 items-center">
+    <SafeAreaView className="flex-1 justify-center gap-5 bg-bglight h-full pt-10 items-center">
+      <Text className="text-primary font-semibold text-3xl drop-shadow-lg">The Movie Scout</Text>
       <Animated.View style={animatedStyle}>
         <images.Video_Streaming height={250} className="drop-shadow-lg" />
       </Animated.View>
-      <Button
-        title="Home"
-        onPress={async () => {
-          router.push("home");
-          try {
-            await AsyncStorage.setItem("onBoarded", "true");
-          } catch (err) {
-            console.error(err);
-          }
-        }}
+      <Text className="text-primary font-medium text-lg drop-shadow-lg">
+        Trying to find a movie but can't find 'the one'? Look no further!
+      </Text>
+      <TouchableHighlight
+        className="bg-primary rounded-lg w-4/6 py-3 items-center"
+        style={styles.shadow}
+        underlayColor="#f24f63"
+        onPress={() => router.replace("home")}
       >
-        Home
-      </Button>
+        <Text className="text-white font-semibold text-lg drop-shadow-lg">Dive in</Text>
+      </TouchableHighlight>
       <StatusBar style="light" />
     </SafeAreaView>
   );

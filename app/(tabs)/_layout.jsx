@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import { Tabs, Redirect } from "expo-router";
+import { Tabs, Redirect, useRouter } from "expo-router";
 //import Film from "./film.svg";
 import Icons from "../../constants/icons.js";
 
@@ -29,11 +29,14 @@ const TabsLayout = () => {
   return (
     <>
       <Tabs
-        screenOptions={{
+        screenOptions={({ route }) => ({
           tabBarShowLabel: false,
-          tabBarStyle: { height: "10%" },
+          tabBarStyle: {
+            height: "10%",
+            display: route.name === "movieDetail" ? "none" : "flex",
+          },
           tabBarActiveTintColor: "#ef233c",
-        }}
+        })}
       >
         <Tabs.Screen
           name="home"
@@ -73,6 +76,14 @@ const TabsLayout = () => {
             tabBarIcon: ({ color, focused, size }) => (
               <TabIcon name="Watchlist" icon="Clock" focused={focused} color={color} size={size} />
             ),
+          }}
+        />
+        <Tabs.Screen
+          name="movieDetail"
+          options={{
+            title: "movieDetail",
+            headerShown: false,
+            href: null,
           }}
         />
       </Tabs>

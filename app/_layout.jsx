@@ -14,7 +14,7 @@ const _layout = () => {
     "QuickSand-Bold": require("../assets/fonts/Quicksand-Bold.ttf"),
   });
 
-  useEffect(() => {
+  /*useEffect(() => {
     const setOnBoarded = async () => {
       try {
         await AsyncStorage.setItem("onBoarded", "false");
@@ -24,12 +24,13 @@ const _layout = () => {
     };
 
     setOnBoarded();
-  }, []);
+  }, []);*/
 
   return (
     <GlobalProvider>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
     </GlobalProvider>
   );
