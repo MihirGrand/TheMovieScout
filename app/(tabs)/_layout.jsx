@@ -86,6 +86,14 @@ const TabsLayout = () => {
             href: null,
           }}
         />
+        <Tabs.Screen
+          name="personDetail"
+          options={{
+            title: "personDetail",
+            headerShown: false,
+            href: null,
+          }}
+        />
       </Tabs>
     </>
   );

@@ -69,11 +69,11 @@ export default function App() {
 
   return (
     <SafeAreaView className="flex-1 justify-center gap-5 bg-bglight h-full pt-10 items-center">
-      <Text className="text-primary font-semibold text-3xl drop-shadow-lg">The Movie Scout</Text>
+      <Text className="text-primary font-qsemibold text-3xl drop-shadow-lg">The Movie Scout</Text>
       <Animated.View style={animatedStyle}>
         <images.Video_Streaming height={250} className="drop-shadow-lg" />
       </Animated.View>
-      <Text className="text-primary font-medium text-lg drop-shadow-lg">
+      <Text className="text-primary font-qmedium text-lg drop-shadow-lg">
         Trying to find a movie but can't find 'the one'? Look no further!
       </Text>
       <TouchableHighlight
@@ -82,7 +82,7 @@ export default function App() {
         underlayColor="#f24f63"
         onPress={() => router.replace("home")}
       >
-        <Text className="text-white font-semibold text-lg drop-shadow-lg">Dive in</Text>
+        <Text className="text-white font-qsemibold text-lg drop-shadow-lg">Dive in</Text>
       </TouchableHighlight>
       <StatusBar style="light" />
     </SafeAreaView>
