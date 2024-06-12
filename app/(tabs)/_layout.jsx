@@ -33,7 +33,8 @@ const TabsLayout = () => {
           tabBarShowLabel: false,
           tabBarStyle: {
             height: "10%",
-            display: route.name === "movieDetail" ? "none" : "flex",
+            display:
+              route.name === "movieDetail" || route.name === "personDetail" ? "none" : "flex",
           },
           tabBarActiveTintColor: "#ef233c",
         })}

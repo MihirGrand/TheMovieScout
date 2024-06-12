@@ -26,7 +26,7 @@ const Home = () => {
   const [popular, setPopular] = useState(createPlaceholderData(10));
   const [topRated, setTopRated] = useState(createPlaceholderData(10));
   const [upcoming, setUpcoming] = useState(createPlaceholderData(10));
-  const [loading, setLoading] = useState(true); // State for loading modal
+  const [loading, setLoading] = useState(true);
 
   const popularUrl = "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1";
   const nowPlayingUrl = "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
@@ -73,15 +73,25 @@ const Home = () => {
     try {
       const detailsUrl = `https://api.themoviedb.org/3/movie/${item.id}?language=en-US`;
       const creditsUrl = `https://api.themoviedb.org/3/movie/${item.id}/credits?language=en-US`;
-      const responses = await Promise.all([fetch(detailsUrl, options), fetch(creditsUrl, options)]);
-      const [detailsResponse, creditsResponse] = responses;
+      const recsUrl = `https://api.themoviedb.org/3/movie/${item.id}/recommendations?language=en-US`;
+      const responses = await Promise.all([
+        fetch(detailsUrl, options),
+        fetch(creditsUrl, options),
+        fetch(recsUrl, options),
+      ]);
+      const [detailsResponse, creditsResponse, recsResponse] = responses;
       const detailsJson = await detailsResponse.json();
       const credJson = await creditsResponse.json();
+      const recsJson = await recsResponse.json();
       const creditsJson = credJson.cast.sort((a, b) => b.rank - a.rank).slice(0, 10);
       setLoading(false);
       router.push({
         pathname: "movieDetail",
-        params: { deets: JSON.stringify(detailsJson), creds: JSON.stringify(creditsJson) },
+        params: {
+          deets: JSON.stringify(detailsJson),
+          creds: JSON.stringify(creditsJson),
+          recs: JSON.stringify(recsJson),
+        },
       });
     } catch (error) {
       console.error("Error fetching movie details:", error);

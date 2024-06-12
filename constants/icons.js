@@ -9,6 +9,7 @@ import Clock_O from "../assets/icons/clock-outline.svg";
 import Star_O from "../assets/icons/star-outline.svg";
 import Calendar_O from "../assets/icons/calendar-outline.svg";
 import CloudDown_O from "../assets/icons/cloudDown-outline.svg";
+import Left_O from "../assets/icons/left-outline.svg";
 
 export default {
   Home_F,
@@ -22,4 +23,5 @@ export default {
   Star_O,
   Calendar_O,
   CloudDown_O,
+  Left_O,
 };
