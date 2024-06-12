@@ -72,7 +72,7 @@ const PersonDetail = () => {
                 </TouchableHighlight>
                 <Text className="text-white font-qmedium text-xl pb-1">Movie Details</Text>
               </View>
-              <View className="flex-1 items-center space-y-4 pt-3">
+              <View className="flex items-center space-y-4 pt-3">
                 <View className="flex-row px-3 gap-3">
                   <Image
                     style={styles.shadow}
@@ -83,6 +83,12 @@ const PersonDetail = () => {
                     <Text className="text-white font-qsemibold text-xl">{details.name}</Text>
                   </View>
                 </View>
+                <Text className="text-white">{details.biography}</Text>
+                <Text className="text-white">{details.birthday}</Text>
+                <Text className="text-white">{details.deathday ?? "null"}</Text>
+                <Text className="text-white">{details.gender.toString()}</Text>
+                <Text className="text-white">{details.place_of_birth}</Text>
+                <Text className="text-white">{details.popularity}</Text>
               </View>
             </View>
           </View>

@@ -968,6 +968,7 @@ const MovieDetail = () => {
             </ImageBackground>
           </View>
           <View className="flex mt-4">
+            <Text>Cast</Text>
             <FlatList
               data={credits}
               renderItem={renderItem}
@@ -985,6 +986,7 @@ const MovieDetail = () => {
             </View>
           </View>
           <View className="flex-1 mt-4">
+            <Text>Recommendations</Text>
             <FlatList
               data={recoms}
               renderItem={renderRec}
