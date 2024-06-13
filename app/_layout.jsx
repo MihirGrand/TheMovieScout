@@ -31,6 +31,26 @@ const _layout = () => {
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="movieDetail"
+          options={{
+            headerShown: true,
+            headerTransparent: true,
+            title: "Movie Details",
+            headerTitleStyle: { fontFamily: "QuickSand-SemiBold" },
+            headerTintColor: "#fff",
+          }}
+        />
+        <Stack.Screen
+          name="personDetail"
+          options={{
+            headerShown: true,
+            headerTransparent: true,
+            title: "Artist Details",
+            headerTitleStyle: { fontFamily: "QuickSand-SemiBold" },
+            headerTintColor: "#fff",
+          }}
+        />
       </Stack>
     </GlobalProvider>
   );

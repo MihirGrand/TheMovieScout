@@ -79,7 +79,7 @@ const TabsLayout = () => {
             ),
           }}
         />
-        <Tabs.Screen
+        {/*<Tabs.Screen
           name="movieDetail"
           options={{
             title: "movieDetail",
@@ -94,7 +94,7 @@ const TabsLayout = () => {
             headerShown: false,
             href: null,
           }}
-        />
+        />*/}
       </Tabs>
     </>
   );

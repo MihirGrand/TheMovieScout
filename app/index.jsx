@@ -80,7 +80,7 @@ export default function App() {
         className="bg-primary rounded-lg w-4/6 py-3 items-center"
         style={styles.shadow}
         underlayColor="#f24f63"
-        onPress={() => router.replace("home")}
+        onPress={() => router.replace("home") /*router.push("/movieDeet")*/}
       >
         <Text className="text-white font-qsemibold text-lg drop-shadow-lg">Dive in</Text>
       </TouchableHighlight>

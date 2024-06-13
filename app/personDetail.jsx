@@ -12,7 +12,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { useLocalSearchParams, useNavigation } from "expo-router";
-import icons from "../../constants/icons";
+import icons from "../constants/icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "expo-status-bar";
 import { router } from "expo-router";
@@ -21,7 +21,6 @@ const PersonDetail = () => {
   const { deets } = useLocalSearchParams();
   const [loading, setLoading] = useState(false);
   const details = JSON.parse(deets);
-  console.log(details);
 
   const styles = StyleSheet.create({
     shadow: {
@@ -62,17 +61,7 @@ const PersonDetail = () => {
               source={{ uri: `https://image.tmdb.org/t/p/w780${details.profile_path}` }}
             />
             <View className="absolute top-0 left-0 right-0 bottom-0 bg-black/70 rounded-bl-lg rounded-br-lg pt-10 justify-stretch">
-              <View className="flex-row pl-3 items-center space-x-2">
-                <TouchableHighlight
-                  className="rounded-2xl w-10 h-10 items-center justify-center"
-                  underlayColor="#ffffff1a"
-                  onPress={() => router.replace("home")}
-                >
-                  <icons.Left_O height={25} width={25} stroke="#ffffff" />
-                </TouchableHighlight>
-                <Text className="text-white font-qmedium text-xl pb-1">Movie Details</Text>
-              </View>
-              <View className="flex items-center space-y-4 pt-3">
+              <View className="flex items-center space-y-4 pt-10">
                 <View className="flex-row px-3 gap-3">
                   <Image
                     style={styles.shadow}
