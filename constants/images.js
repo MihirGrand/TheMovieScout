@@ -1,5 +1,9 @@
 import Home_Cinema from "../assets/images/home-cinema.svg";
 import Video_Streaming from "../assets/images/video-streaming.svg";
+import Logo from "../assets/images/logo.svg";
+import Detective from "../assets/images/detective.svg";
+import Imdb_S from "../assets/images/imdb.svg";
+import Tomato_S from "../assets/images/tomato.svg";
 import { Image } from "react-native";
 
 const Imdb = (height, width, tintColor) => {
@@ -24,4 +28,4 @@ const Tomato = (height, width, tintColor) => {
   );
 };
 
-export default { Home_Cinema, Video_Streaming, Imdb, Tomato };
+export default { Home_Cinema, Video_Streaming, Logo, Detective, Imdb, Tomato, Imdb_S, Tomato_S };

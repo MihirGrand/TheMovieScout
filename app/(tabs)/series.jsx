@@ -1,12 +1,12 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-const Shows = () => {
+const Series = () => {
   return (
     <View>
-      <Text>Shows</Text>
+      <Text>Series</Text>
     </View>
   );
 };
 
-export default Shows;
+export default Series;

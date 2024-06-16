@@ -11,7 +11,7 @@ const TabIcon = ({ name, icon, focused, color, size }) => {
     return (
       <View className={style}>
         <Ico height={size} width={size} fill={color} />
-        <Text>{name}</Text>
+        <Text className="text-primary">{name}</Text>
       </View>
     );
   } else {
@@ -19,7 +19,7 @@ const TabIcon = ({ name, icon, focused, color, size }) => {
     return (
       <View className={style}>
         <Ico height={size} width={size} stroke={color} />
-        <Text>{name}</Text>
+        <Text className="text-[#808080]">{name}</Text>
       </View>
     );
   }
@@ -32,11 +32,14 @@ const TabsLayout = () => {
         screenOptions={({ route }) => ({
           tabBarShowLabel: false,
           tabBarStyle: {
+            backgroundColor: "#242423",
             height: "10%",
             display:
               route.name === "movieDetail" || route.name === "personDetail" ? "none" : "flex",
+            borderTopWidth: 0,
+            elevation: 8,
           },
-          tabBarActiveTintColor: "#ef233c",
+          tabBarActiveTintColor: "#f5cb5c",
         })}
       >
         <Tabs.Screen
@@ -60,12 +63,12 @@ const TabsLayout = () => {
           }}
         />
         <Tabs.Screen
-          name="shows"
+          name="series"
           options={{
-            title: "Shows",
+            title: "Series",
             headerShown: false,
             tabBarIcon: ({ color, focused, size }) => (
-              <TabIcon name="Shows" icon="Series" focused={focused} color={color} size={size} />
+              <TabIcon name="Series" icon="Series" focused={focused} color={color} size={size} />
             ),
           }}
         />

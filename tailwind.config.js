@@ -3,13 +3,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#ef233c",
-        primaryHover: "#f24f63",
+        primary: "#f5cb5c",
+        primaryHover: "#FF6969",
         secondary: "#d90429",
-        bglight: "#edf2f4",
+        lightText: "#e8eddf",
+        bglight: "#e8eddf",
         bgdark: {
-          DEFAULT: "#2b2d42",
-          100: "#8d99ae",
+          DEFAULT: "#242423",
+          100: "#333533",
+          200: "#474947",
         },
       },
     },

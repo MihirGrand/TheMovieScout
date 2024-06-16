@@ -7,6 +7,7 @@ export const useGlobalContext = () => useContext(GlobalContext);
 const GlobalProvider = ({ children }) => {
   const [onBoarded, setOnBoarded] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [region, setRegion] = useState("IN");
 
   useEffect(() => {
     const checkOnBoarding = async () => {
@@ -29,7 +30,7 @@ const GlobalProvider = ({ children }) => {
     return null;
   }
 
-  return <GlobalContext.Provider value={{ onBoarded }}>{children}</GlobalContext.Provider>;
+  return <GlobalContext.Provider value={{ onBoarded, region }}>{children}</GlobalContext.Provider>;
 };
 
 export default GlobalProvider;

@@ -3,14 +3,19 @@ import {
   View,
   Text,
   Image,
+  TextInput,
   FlatList,
   ScrollView,
   TouchableHighlight,
   Modal,
   ActivityIndicator,
+  TouchableOpacity,
 } from "react-native";
 import { router } from "expo-router";
 import icons from "../../constants/icons";
+import images from "../../constants/images";
+import { LinearGradient } from "expo-linear-gradient";
+import { StatusBar } from "expo-status-bar";
 
 // Function to create placeholder data
 const createPlaceholderData = (count) => {
@@ -31,7 +36,11 @@ const Home = () => {
   const popularUrl = "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1";
   const nowPlayingUrl = "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
   const topRatedUrl = "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";
-  const upcomingUrl = "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1";
+  const date = new Date();
+  const today = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  date.setDate(date.getDate() + 15);
+  const later = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  const upcomingUrl = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en_US&page=1&region=US&release_date.gte=${today}&release_date.lte=${later}&sort_by=primary_release_date.asc`;
 
   const options = {
     method: "GET",
@@ -101,7 +110,7 @@ const Home = () => {
 
   const renderItem = ({ item }) => (
     <TouchableHighlight underlayColor={"transparent"} onPress={() => handlePress(item)}>
-      <View key={item.id} className="w-24 p-2">
+      <View key={item.id} className="w-28 p-2">
         {item.poster_path ? (
           <Image
             className="h-40 rounded-md"
@@ -113,64 +122,118 @@ const Home = () => {
             <icons.CloudDown_O height={20} width={20} stroke={"#A9A9A9"} />
           </View>
         )}
-        <Text className="font-qmedium text-wrap text-center">{item.title}</Text>
+        <Text className="font-qmedium text-center text-lightText pt-1" numberOfLines={2}>
+          {item.title}
+        </Text>
       </View>
     </TouchableHighlight>
   );
 
   return (
-    <View className="pt-10">
-      <Text>Home</Text>
+    <View className="pt-10 bg-bgdark-100">
+      <View className="flex-row items-center justify-center py-2 pb-4">
+        <images.Detective height={30} width={30} fill="#f5cb5c" />
+        <Text className="text-primary font-qsemibold text-xl pl-3">The Movie Scout</Text>
+      </View>
+      <TouchableOpacity className="mx-10 bg-bgdark-200 rounded-lg p-4">
+        <TextInput
+          cursorColor="#f5cb5c"
+          selectionHandleColor="#f5cb5c"
+          selectionColor="#f5cb5c"
+          placeholder="Search"
+          placeholderTextColor="#FFFFFF4A"
+          className="text-lightText text-lg font-qsemibold"
+          returnKeyType="search"
+          onSubmitEditing={(event) => router.navigate(`/search/${event.nativeEvent.text}`)}
+        ></TextInput>
+      </TouchableOpacity>
       <Modal visible={loading} transparent={true} animationType="fade">
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-          }}
-        >
+        <View className="flex-1 justify-center items-center bg-[#00000080]">
           <ActivityIndicator size="large" color="#ffffff" />
           <Text style={{ color: "#ffffff", marginTop: 10 }}>Loading...</Text>
         </View>
       </Modal>
-      <ScrollView>
-        <Text>Popular</Text>
+      <ScrollView contentContainerStyle={{ paddingBottom: 80 }}>
+        <View className="flex-row items-center py-2 px-4">
+          <icons.Fire_F height={20} width={20} fill="#f5cb5c" />
+          <Text className="text-primary font-qmedium text-lg pl-2 pb-1">Popular</Text>
+        </View>
         <FlatList
+          className="px-2 pb-2"
+          contentContainerStyle={{ paddingRight: 10 }}
           data={popular}
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
           horizontal
           showsHorizontalScrollIndicator={false}
+          fadingEdgeLength={100}
         />
-        <View className="border-b border-gray-300" />
-        <Text>Now Playing</Text>
+        {/*<View className="border-b border-[#80808033] py-2" />*/}
+        <LinearGradient
+          colors={["transparent", "#80808033", "transparent"]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          locations={[0, 0.4, 2]}
+          className="h-[2] w-full my-2"
+        />
+        <View className="flex-row items-center py-2 px-4">
+          <icons.Clock_F height={20} width={20} fill="#f5cb5c" />
+          <Text className="text-primary font-qmedium text-lg pl-2 pb-1">Now Playing</Text>
+        </View>
         <FlatList
+          className="px-2 pb-2"
+          contentContainerStyle={{ paddingRight: 10 }}
           data={nowPlaying}
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
           horizontal
           showsHorizontalScrollIndicator={false}
+          fadingEdgeLength={100}
         />
-        <View className="border-b border-gray-300" />
-        <Text>Top Rated</Text>
+        <LinearGradient
+          colors={["transparent", "#80808033", "transparent"]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          locations={[0, 0.4, 2]}
+          className="h-[2] w-full my-2"
+        />
+        <View className="flex-row items-center py-2 px-4">
+          <icons.Increase_F height={20} width={20} fill="#f5cb5c" />
+          <Text className="text-primary font-qmedium text-lg pl-2 pb-1">Top Rated</Text>
+        </View>
         <FlatList
+          className="px-2 pb-2"
+          contentContainerStyle={{ paddingRight: 10 }}
           data={topRated}
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
           horizontal
           showsHorizontalScrollIndicator={false}
+          fadingEdgeLength={100}
         />
-        <View className="border-b border-gray-300" />
-        <Text>Upcoming</Text>
+        <LinearGradient
+          colors={["transparent", "#80808033", "transparent"]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          locations={[0, 0.4, 2]}
+          className="h-[2] w-full my-2"
+        />
+        <View className="flex-row items-center py-2 px-4">
+          <icons.Calendar_F height={20} width={20} fill="#f5cb5c" />
+          <Text className="text-primary font-qmedium text-lg pl-2 pb-1">Upcoming</Text>
+        </View>
         <FlatList
+          className="px-2 pb-2"
+          contentContainerStyle={{ paddingRight: 10 }}
           data={upcoming}
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
           horizontal
           showsHorizontalScrollIndicator={false}
+          fadingEdgeLength={100}
         />
       </ScrollView>
+      <StatusBar style="light" />
     </View>
   );
 };
