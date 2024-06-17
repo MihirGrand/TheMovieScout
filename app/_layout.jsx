@@ -4,6 +4,7 @@ import { useFonts } from "expo-font";
 import GlobalProvider from "../context/GlobalProvider";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useCallback } from "react";
+import LoadingIndicator from "./components/loading";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -35,46 +36,49 @@ const _layout = () => {
 
   return (
     <GlobalProvider>
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen
-          name="movieDetail"
-          options={{
-            headerShown: true,
-            headerTransparent: true,
-            title: "Movie Details",
-            headerTitleStyle: { fontFamily: "QuickSand-SemiBold" },
-            headerTintColor: "#fff",
-          }}
-        />
-        <Stack.Screen
-          name="seriesDetail"
-          options={{
-            headerShown: true,
-            headerTransparent: true,
-            title: "Series Details",
-            headerTitleStyle: { fontFamily: "QuickSand-SemiBold" },
-            headerTintColor: "#fff",
-          }}
-        />
-        <Stack.Screen
-          name="personDetail"
-          options={{
-            headerShown: true,
-            headerTransparent: true,
-            title: "Artist Details",
-            headerTitleStyle: { fontFamily: "QuickSand-SemiBold" },
-            headerTintColor: "#fff",
-          }}
-        />
-        <Stack.Screen
-          name="search/[query]"
-          options={{
-            headerShown: false,
-          }}
-        />
-      </Stack>
+      <View className="flex-1">
+        <LoadingIndicator />
+        <Stack>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="movieDetail"
+            options={{
+              headerShown: true,
+              headerTransparent: true,
+              title: "Movie Details",
+              headerTitleStyle: { fontFamily: "QuickSand-SemiBold" },
+              headerTintColor: "#fff",
+            }}
+          />
+          <Stack.Screen
+            name="seriesDetail"
+            options={{
+              headerShown: true,
+              headerTransparent: true,
+              title: "Series Details",
+              headerTitleStyle: { fontFamily: "QuickSand-SemiBold" },
+              headerTintColor: "#fff",
+            }}
+          />
+          <Stack.Screen
+            name="personDetail"
+            options={{
+              headerShown: true,
+              headerTransparent: true,
+              title: "Artist Details",
+              headerTitleStyle: { fontFamily: "QuickSand-SemiBold" },
+              headerTintColor: "#fff",
+            }}
+          />
+          <Stack.Screen
+            name="search/[query]"
+            options={{
+              headerShown: false,
+            }}
+          />
+        </Stack>
+      </View>
     </GlobalProvider>
   );
 };

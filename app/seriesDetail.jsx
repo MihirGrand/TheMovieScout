@@ -35,8 +35,6 @@ const SeriesDetail = () => {
     overview = desc.slice(0, 3).join(". ");
   }
 
-  console.log(details);
-
   if (!overview.endsWith("?") && !overview.endsWith(".")) {
     overview += ".";
   }

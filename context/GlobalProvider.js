@@ -26,11 +26,11 @@ const GlobalProvider = ({ children }) => {
     checkOnBoarding();
   }, []);
 
-  if (loading) {
-    return null;
-  }
-
-  return <GlobalContext.Provider value={{ onBoarded, region }}>{children}</GlobalContext.Provider>;
+  return (
+    <GlobalContext.Provider value={{ onBoarded, region, loading, setLoading }}>
+      {children}
+    </GlobalContext.Provider>
+  );
 };
 
 export default GlobalProvider;

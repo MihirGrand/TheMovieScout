@@ -79,9 +79,6 @@ export default function App() {
       />
       <images.Detective height={100} width={100} fill="#f5cb5c" stroke="#f5cb5c" />
       <Text className="text-primary font-qbold text-3xl drop-shadow-lg pt-5">The Movie Scout</Text>
-      {/*<Animated.View style={animatedStyle}>
-        <images.Video_Streaming height={250} className="drop-shadow-lg" />
-      </Animated.View>*/}
       <Text className="text-primary font-qsemibold text-lg drop-shadow-lg px-10 text-center">
         Trying to find a movie, but can't find "the one"?
       </Text>
@@ -96,7 +93,7 @@ export default function App() {
         <TouchableHighlight
           className="rounded-lg w-full items-center py-3"
           underlayColor="#F3DFA9"
-          onPress={() => router.replace("home") /*router.push("/movieDeet")*/}
+          onPress={() => router.replace("home")}
         >
           <Text className="text-bgdark-100 font-qbold text-lg drop-shadow-lg">Dive in</Text>
         </TouchableHighlight>
