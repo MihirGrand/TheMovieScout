@@ -1,3 +1,4 @@
+import Animated, { SlideInLeft, SlideOutRight } from "react-native-reanimated";
 import React, { useState, useEffect } from "react";
 import {
   View,
@@ -17,14 +18,8 @@ import images from "../../constants/images";
 import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "expo-status-bar";
 
-// Function to create placeholder data
-const createPlaceholderData = (count) => {
-  return Array.from({ length: count }, (_, index) => ({
-    id: `placeholder-${index}`,
-    title: "Loading...",
-    poster_path: null,
-  }));
-};
+import { createPlaceholderData } from "../../constants/functions";
+import { tmdbUrl } from "../../constants/constants";
 
 const Home = () => {
   const [nowPlaying, setNowPlaying] = useState(createPlaceholderData(10));
@@ -33,14 +28,14 @@ const Home = () => {
   const [upcoming, setUpcoming] = useState(createPlaceholderData(10));
   const [loading, setLoading] = useState(true);
 
-  const popularUrl = "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1";
-  const nowPlayingUrl = "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
-  const topRatedUrl = "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";
+  const popularUrl = `${tmdbUrl}movie/popular?language=en-US&page=1`;
+  const nowPlayingUrl = `${tmdbUrl}movie/now_playing?language=en-US&page=1`;
+  const topRatedUrl = `${tmdbUrl}movie/top_rated?language=en-US&page=1`;
   const date = new Date();
   const today = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
   date.setDate(date.getDate() + 15);
   const later = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-  const upcomingUrl = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en_US&page=1&region=US&release_date.gte=${today}&release_date.lte=${later}&sort_by=primary_release_date.asc`;
+  const upcomingUrl = `${tmdbUrl}discover/movie?include_adult=false&include_video=false&language=en_US&page=1&region=US&release_date.gte=${today}&release_date.lte=${later}&sort_by=primary_release_date.asc`;
 
   const options = {
     method: "GET",
@@ -135,7 +130,7 @@ const Home = () => {
         <images.Detective height={30} width={30} fill="#f5cb5c" />
         <Text className="text-primary font-qsemibold text-xl pl-3">The Movie Scout</Text>
       </View>
-      <TouchableOpacity className="mx-10 bg-bgdark-200 rounded-lg p-4">
+      <TouchableOpacity className="mx-4 bg-bgdark-200 rounded-lg p-4 mb-5">
         <TextInput
           cursorColor="#f5cb5c"
           selectionHandleColor="#f5cb5c"
@@ -153,14 +148,14 @@ const Home = () => {
           <Text style={{ color: "#ffffff", marginTop: 10 }}>Loading...</Text>
         </View>
       </Modal>
-      <ScrollView contentContainerStyle={{ paddingBottom: 80 }}>
+      <ScrollView contentContainerStyle={{ paddingBottom: 150 }}>
         <View className="flex-row items-center py-2 px-4">
           <icons.Fire_F height={20} width={20} fill="#f5cb5c" />
           <Text className="text-primary font-qmedium text-lg pl-2 pb-1">Popular</Text>
         </View>
         <FlatList
           className="px-2 pb-2"
-          contentContainerStyle={{ paddingRight: 10 }}
+          contentContainerStyle={{ paddingRight: 20 }}
           data={popular}
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
@@ -223,7 +218,7 @@ const Home = () => {
           <Text className="text-primary font-qmedium text-lg pl-2 pb-1">Upcoming</Text>
         </View>
         <FlatList
-          className="px-2 pb-2"
+          className="px-2"
           contentContainerStyle={{ paddingRight: 10 }}
           data={upcoming}
           renderItem={renderItem}

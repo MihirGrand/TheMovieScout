@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-const watchLater = () => {
+const WatchLater = () => {
   return (
     <View>
       <Text>watchLater</Text>
@@ -9,4 +9,4 @@ const watchLater = () => {
   );
 };
 
-export default watchLater;
+export default WatchLater;

@@ -31,7 +31,7 @@ const MovieDetail = () => {
   const recommendations = recoms.sort((a, b) => b.popularity - a.popularity);
   let desc = details.overview.split(".");
   let overview = desc.slice(0, 2).join(". ").trim();
-  if (overview.length < 300 && details.overview.length > 300) {
+  if (details.overview && overview.length < 300 && details.overview.length > 300) {
     overview = desc.slice(0, 3).join(". ");
   }
 
@@ -256,9 +256,10 @@ const MovieDetail = () => {
                       <View className="flex-row items-center space-x-2 pr-10">
                         <icons.Monitor_F height={20} width={20} fill="#ffffff" />
                         <Text className="text-lightText">
-                          {providers.length > 0 ? "Streaming on " : "-------------"}
+                          {providers && providers.length > 0 ? "Streaming on " : "-------------"}
                         </Text>
-                        {providers.length > 0 &&
+                        {providers &&
+                          providers.length > 0 &&
                           providers.map((x) => (
                             <View>
                               <Image
