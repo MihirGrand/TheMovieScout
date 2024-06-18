@@ -23,6 +23,10 @@ import VideoCamera_F from "../assets/icons/videoCamera-filled.svg";
 import Person_F from "../assets/icons/person-filled.svg";
 import No_F from "../assets/icons/no-filled.svg";
 import Search_F from "../assets/icons/search-filled.svg";
+import Heart_F from "../assets/icons/heart-filled.svg";
+import Heart_O from "../assets/icons/heart-outline.svg";
+import Check_F from "../assets/icons/check-filled.svg";
+import Check_O from "../assets/icons/check-outline.svg";
 
 export default {
   Home_F,
@@ -50,4 +54,8 @@ export default {
   Person_F,
   No_F,
   Search_F,
+  Heart_F,
+  Heart_O,
+  Check_F,
+  Check_O,
 };

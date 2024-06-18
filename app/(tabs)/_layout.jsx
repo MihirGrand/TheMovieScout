@@ -153,7 +153,7 @@ const TabsLayout = () => {
   return (
     <Tab.Navigator
       tabBarPosition="bottom"
-      style={{ backgroundColor: "#333533", borderTopWidth: 0, elevation: 8 }}
+      style={{ backgroundColor: "#333533", borderTopWidth: 0, elevation: 8, paddingBottom: 0 }}
       initialLayout={{ width: Dimensions.get("window").width }}
       screenOptions={({ route }) => ({
         tabBarPressOpacity: 0,
@@ -166,6 +166,7 @@ const TabsLayout = () => {
           borderTopLeftRadius: 15,
           borderTopRightRadius: 15,
           overflow: "hidden",
+          justifyContent: "center",
         },
         tabBarActiveTintColor: "#f5cb5c",
         tabBarIcon: ({ focused, color, size }) => {
@@ -189,7 +190,7 @@ const TabsLayout = () => {
           width: "100%",
           justifyContent: "center",
           height: "100%",
-          paddingTop: 5,
+          alignContent: "center",
         },
         tabBarIndicatorStyle: {
           display: "none",
