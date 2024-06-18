@@ -22,6 +22,7 @@ import Marker_F from "../assets/icons/marker-filled.svg";
 import VideoCamera_F from "../assets/icons/videoCamera-filled.svg";
 import Person_F from "../assets/icons/person-filled.svg";
 import No_F from "../assets/icons/no-filled.svg";
+import Search_F from "../assets/icons/search-filled.svg";
 
 export default {
   Home_F,
@@ -48,4 +49,5 @@ export default {
   VideoCamera_F,
   Person_F,
   No_F,
+  Search_F,
 };

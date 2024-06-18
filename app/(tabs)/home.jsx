@@ -1,22 +1,13 @@
 import Animated, { SlideInLeft, SlideOutRight } from "react-native-reanimated";
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  Image,
-  TextInput,
-  FlatList,
-  ScrollView,
-  TouchableHighlight,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, TextInput, FlatList, ScrollView, TouchableOpacity } from "react-native";
 import { router } from "expo-router";
 import icons from "../../constants/icons";
 import images from "../../constants/images";
 import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "expo-status-bar";
 
-import { createPlaceholderData, handleMoviePress } from "../../constants/functions";
+import { createPlaceholderData } from "../../constants/functions";
 import { tmdbUrl, options } from "../../constants/constants";
 import { useGlobalContext } from "../../context/GlobalProvider";
 import Card from "../components/card";
@@ -26,7 +17,7 @@ const Home = () => {
   const [popular, setPopular] = useState(createPlaceholderData(10));
   const [topRated, setTopRated] = useState(createPlaceholderData(10));
   const [upcoming, setUpcoming] = useState(createPlaceholderData(10));
-  const { loading, setLoading } = useGlobalContext();
+  const { setLoading } = useGlobalContext();
 
   const popularUrl = `${tmdbUrl}movie/popular?language=en-US&page=1`;
   const nowPlayingUrl = `${tmdbUrl}movie/now_playing?language=en-US&page=1`;
@@ -39,7 +30,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true); // Set loading to true before fetching data
+      setLoading(true);
       try {
         const responses = await Promise.all([
           fetch(popularUrl, options),

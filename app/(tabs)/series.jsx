@@ -1,32 +1,19 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  Image,
-  TextInput,
-  FlatList,
-  ScrollView,
-  TouchableHighlight,
-  Modal,
-  ActivityIndicator,
-  TouchableOpacity,
-} from "react-native";
-import { router } from "expo-router";
+import { View, Text, FlatList, ScrollView } from "react-native";
 import icons from "../../constants/icons";
-import images from "../../constants/images";
 import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "expo-status-bar";
 
-import { createPlaceholderData, handleTvPress } from "../../constants/functions";
+import { createPlaceholderData } from "../../constants/functions";
 import { tmdbUrl, options } from "../../constants/constants";
 import { useGlobalContext } from "../../context/GlobalProvider";
+import Card from "../components/card";
 
 const Series = () => {
   const [airingToday, setAiringToday] = useState(createPlaceholderData(10));
   const [popular, setPopular] = useState(createPlaceholderData(10));
   const [topRated, setTopRated] = useState(createPlaceholderData(10));
   const [airingSoon, setAiringSoon] = useState(createPlaceholderData(10));
-  const loading = false;
   const { setLoading } = useGlobalContext();
 
   const popularUrl = `${tmdbUrl}tv/popular?language=en-US&page=1`;
@@ -37,6 +24,7 @@ const Series = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const responses = await Promise.all([
           fetch(popularUrl, options),
           fetch(airingTodayUrl, options),
@@ -53,9 +41,9 @@ const Series = () => {
         setAiringToday(airingTodayJson.results);
         setTopRated(topRatedJson.results);
         setAiringSoon(airingSoonJson.results);
-        setLoading(false);
       } catch (error) {
         console.error("Error fetching tv data:", error);
+      } finally {
         setLoading(false);
       }
     };
@@ -93,14 +81,9 @@ const Series = () => {
     { title: "Top Rated", data: topRated, icon: icons.Increase_F },
     { title: "Airing This Week", data: airingSoon, icon: icons.Calendar_F },
   ];
+
   return (
     <View className="pt-10 bg-bgdark-100">
-      <Modal visible={loading} transparent={true} animationType="fade">
-        <View className="flex-1 justify-center items-center bg-[#00000080]">
-          <ActivityIndicator size="large" color="#ffffff" />
-          <Text style={{ color: "#ffffff", marginTop: 10 }}>Loading...</Text>
-        </View>
-      </Modal>
       <ScrollView contentContainerStyle={{ paddingBottom: 20 }}>
         {sections.map((section, index) => {
           return (
@@ -113,7 +96,7 @@ const Series = () => {
                 className="px-2 pb-2"
                 contentContainerStyle={{ paddingRight: 10 }}
                 data={section.data}
-                renderItem={renderItem}
+                renderItem={({ item }) => Card(item.id, item.poster_path, item.name)}
                 keyExtractor={(item) => item.id.toString()}
                 horizontal
                 showsHorizontalScrollIndicator={false}
