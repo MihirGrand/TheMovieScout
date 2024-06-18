@@ -1,1 +1,1 @@
-![The Movie Scout Header](https://github.com/MihirGrand/TheMovieScout/tree/main/media/Header.png)
+![The Movie Scout Header](https://github.com/MihirGrand/TheMovieScout/blob/main/Header.png?raw=true)
